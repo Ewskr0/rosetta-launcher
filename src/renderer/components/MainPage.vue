@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire" dark>
+    <TitleBar></TitleBar>
     <sideBar></sideBar>
     <v-content class="main">
       <v-container grid-list-md text-xs-center fill-height>
@@ -38,10 +39,12 @@
 
 <script>
   import SideBar from './SideBar.vue'
+  import TitleBar from './TitleBar.vue'
   
   export default {
     components: {
-      SideBar
+      SideBar,
+      TitleBar
     },
     data: () => ({
       drawer: null

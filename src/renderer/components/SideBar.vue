@@ -4,6 +4,7 @@
     permanent
     mini-variant
     fixed
+    class="sidebar"
   >
     <v-list>
       <v-list-tile
@@ -37,3 +38,9 @@
     }
   }
 </script>
+
+<style>
+  .sidebar{
+    margin-top: 53px!important;
+  }
+</style>
