@@ -24,7 +24,7 @@
           </v-flex>
           <v-flex xs12>
             <v-layout align-start row>
-              <v-btn large color="teal darken-1">
+              <v-btn large color="teal darken-1" @click="getPath()">
                 <v-icon>cloud_download</v-icon>
                 Télecharger
               </v-btn>
@@ -63,6 +63,15 @@
     }),
     props: {
       source: String
+    },
+    methods: {
+      getPath () {
+        const {
+          dialog
+        } = require('electron').remote
+        let path = dialog.showOpenDialog({ properties: ['openDirectory'] })
+        console.log(path)
+      }
     }
   }
 </script>
@@ -80,14 +89,13 @@
     width: 100%;
     text-align: center;
   }
-
-  .containerInfo{
+  
+  .containerInfo {
     padding-top: 0!important;
     padding-bottom: 0!important;
   }
-
-  .progressBar{
+  
+  .progressBar {
     margin-top: 5px!important;
   }
-
 </style>
