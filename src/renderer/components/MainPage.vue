@@ -24,10 +24,6 @@
           </v-flex>
           <v-flex xs12>
             <v-layout align-start row>
-              <v-btn large color="teal darken-1" @click="getPath()">
-                <v-icon>cloud_download</v-icon>
-                Télecharger
-              </v-btn>
               <v-layout row wrap>
                 <v-container grid-list-xs class="containerInfo">
                   <v-flex xs12>
@@ -39,7 +35,7 @@
                 </v-container>
               </v-layout>
               <v-spacer></v-spacer>
-              <v-btn large color="green darken-2">Lancer</v-btn>
+              <v-btn large color="green darken-2" @click="getPath()">{{ textBtn}}</v-btn>
             </v-layout>
           </v-flex>
         </v-layout>
@@ -59,18 +55,43 @@
     },
     data: () => ({
       drawer: null,
-      progresValue: 85
+      path: '',
+      progresValue: 85,
+      status: ['Lancer', 'Mise à jour', 'Installer'],
+      textBtn: ''
     }),
     props: {
       source: String
+    },
+    created: function () {
+      this.textBtn = this.status[0]
+      this.loadPath()
     },
     methods: {
       getPath () {
         const {
           dialog
         } = require('electron').remote
-        let path = dialog.showOpenDialog({ properties: ['openDirectory'] })
-        console.log(path)
+        let path = dialog.showOpenDialog({
+          properties: ['openDirectory']
+        })
+        if (path[0]) {
+          let data = JSON.stringify(path[0])
+          let fs = require('fs')
+          fs.writeFileSync('./static/json/path.json', data)
+          this.path = path
+        }
+      },
+      loadPath () {
+        let fs = require('fs')
+        let obj = JSON.parse(fs.readFileSync('./static/json/path.json', 'utf8'))
+        if (obj) {
+          this.path = obj
+          console.log('installation folder: ' + this.path)
+        }
+      },
+      DownloadFiles () {
+        
       }
     }
   }
