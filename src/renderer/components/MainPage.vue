@@ -101,6 +101,12 @@
 </script>
 
 <style>
+    body {
+      user-select: none;
+      cursor: default;
+
+    }
+
    ::-webkit-scrollbar {
     display: none;
   }
