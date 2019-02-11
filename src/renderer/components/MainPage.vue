@@ -24,9 +24,20 @@
           </v-flex>
           <v-flex xs12>
             <v-layout align-start row>
-              <v-btn large color="teal darken-1">Windows</v-btn>
-              <v-btn large color="light-blue accent-2">Mac</v-btn>
-              <v-btn large color="blue-grey lighten-2">Linux</v-btn>
+              <v-btn large color="teal darken-1">
+                <v-icon>cloud_download</v-icon>
+                Télecharger
+              </v-btn>
+              <v-layout row wrap>
+                <v-container grid-list-xs class="containerInfo">
+                  <v-flex xs12>
+                    <h3 class="text-lg-left">download status: </h3>
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-progress-linear color="success" class="progressBar" v-model="progresValue"></v-progress-linear>
+                  </v-flex>
+                </v-container>
+              </v-layout>
               <v-spacer></v-spacer>
               <v-btn large color="green darken-2">Lancer</v-btn>
             </v-layout>
@@ -47,7 +58,8 @@
       TitleBar
     },
     data: () => ({
-      drawer: null
+      drawer: null,
+      progresValue: 85
     }),
     props: {
       source: String
@@ -56,7 +68,7 @@
 </script>
 
 <style>
-  ::-webkit-scrollbar {
+   ::-webkit-scrollbar {
     display: none;
   }
   
@@ -68,4 +80,14 @@
     width: 100%;
     text-align: center;
   }
+
+  .containerInfo{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+  }
+
+  .progressBar{
+    margin-top: 5px!important;
+  }
+
 </style>
