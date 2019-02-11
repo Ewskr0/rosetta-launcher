@@ -3,12 +3,12 @@
     <TitleBar></TitleBar>
     <sideBar></sideBar>
     <v-content class="main">
-      <v-container grid-list-md text-xs-center fill-height>
+      <v-container grid-list-md fill-height>
         <v-layout row wrap>
           <v-flex xs12>
             <v-card>
               <v-card-title class="title text-xs-center">
-                <h1> Rosetta Laucnher
+                <h1> Rosetta Launcher
                 </h1>
               </v-card-title>
             </v-card>
@@ -17,8 +17,12 @@
             <v-card>
               <v-img src="/static/image/background1.jpg" height="308px"></v-img>
               <v-card-title class="title">
-                <h3>Derniere MAJ: </h3>
-                <p class="text-xs-left">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora sed, at suscipit officia ipsa nam dolorum cum, quibusdam sint officiis eos veritatis voluptatibus, porro dicta cumque doloribus molestias perferendis!</p>
+                <v-flex xs12 justify-start>
+                  <h3>Derniere MAJ:</h3>
+                </v-flex>
+                <v-flex xs12>
+                  <p>Rosetta passe en version 2.50 !</p>
+                </v-flex>
               </v-card-title>
             </v-card>
           </v-flex>
@@ -27,10 +31,10 @@
               <v-layout row wrap>
                 <v-container grid-list-xs class="containerInfo">
                   <v-flex xs12>
-                    <h3 class="text-lg-left">download status: </h3>
+                    <h3 class="text-lg-left">download status: {{ progressValue}} %</h3>
                   </v-flex>
                   <v-flex xs12>
-                    <v-progress-linear color="success" class="progressBar" v-model="progresValue"></v-progress-linear>
+                    <v-progress-linear color="success" class="progressBar" v-model="progressValue"></v-progress-linear>
                   </v-flex>
                 </v-container>
               </v-layout>
@@ -56,7 +60,7 @@
     data: () => ({
       drawer: null,
       path: '',
-      progresValue: 85,
+      progressValue: 85,
       status: ['Lancer', 'Mise à jour', 'Installer'],
       textBtn: ''
     }),
